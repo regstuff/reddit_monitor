@@ -1,2 +1,4 @@
 praw
 requests
+gspread
+google-auth
