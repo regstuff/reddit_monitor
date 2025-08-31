@@ -83,7 +83,7 @@ for submission in reddit.subreddit("all").search(search_query, sort="new", time_
             print(submission.url, "\n")
             print(submission.selftext.strip())
             print('RESPONSE:', response)
-            if response.lower().strip() in ['negative', 'positive]:
+            if response.lower().strip() in ['negative', 'positive']:
               created_time_str = created_time.strftime('%Y-%m-%d %H:%M:%S')
               row_to_insert = [submission.title, submission.selftext, submission.url, submission.subreddit.display_name, created_time_str]
               sheet.append_row(row_to_insert)
