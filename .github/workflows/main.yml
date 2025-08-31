@@ -29,4 +29,6 @@ jobs:
           AZURE_KEY: ${{ secrets.AZURE_KEY }}
           REDDIT_CLIENTSECRET: ${{ secrets.REDDIT_CLIENTSECRET }}
           EXCLUDE_SUBREDDITS: ${{ secrets.EXCLUDE_SUBREDDITS }}
+          GSHEETS_API_KEY: ${{ secrets.GSHEETS_API_KEY }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
         run: python main.py
