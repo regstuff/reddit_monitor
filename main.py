@@ -60,12 +60,12 @@ Reddit Post: """
 
 exclude_subreddits = eval(os.environ["EXCLUDE_SUBREDDITS"])
 # Search and filter recent posts
-time_threshold = datetime.now(timezone.utc) - timedelta(hours=1)
+time_threshold = datetime.now(timezone.utc) - timedelta(days=1)
 reddit_search_query = f'"{search_query}" OR "{org_query}"'  # OR search
 
 num_submissions = 0
 
-for submission in reddit.subreddit("all").search(search_query, sort="new", time_filter="hour"):
+for submission in reddit.subreddit("all").search(search_query, sort="new", time_filter="day"):
     created_time = datetime.fromtimestamp(submission.created_utc, tz=timezone.utc)
     if created_time > time_threshold and submission.subreddit.display_name.lower() not in exclude_subreddits:
         num_submissions += 1
