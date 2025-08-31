@@ -22,11 +22,11 @@ jobs:
 
       - name: Run reddit monitor script
         env:
-          search_query: ${{ secrets.search_query }}
+          SEARCH_QUERY: ${{ secrets.SEARCH_QUERY }}
           ORG_QUERY: ${{ secrets.ORG_QUERY }}
           REDDIT_CLIENTID: ${{ secrets.REDDIT_CLIENTID }}
           AZURE_URL: ${{ secrets.AZURE_URL }}
           AZURE_KEY: ${{ secrets.AZURE_KEY }}
           REDDIT_CLIENTSECRET: ${{ secrets.REDDIT_CLIENTSECRET }}
-          exclude_subreddits: ${{ secrets.exclude_subreddits }}
+          EXCLUDE_SUBREDDITS: ${{ secrets.EXCLUDE_SUBREDDITS }}
         run: python main.py
