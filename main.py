@@ -26,9 +26,8 @@ reddit = praw.Reddit(
     user_agent=USER_AGENT
 )
 
-search_query = os.environ["search_query"]
-org_query = os.environ["org_query"]
-exclude_
+search_query = os.environ["SEARCH_QUERY"]
+org_query = os.environ["ORG_QUERY"]
 
 title_check_prompt = f"""INSTRUCTION: I will give you a Reddit post. You must do sentiment analysis and determine if the post expresses a positive or negative sentiment about {search_query}, founder of {org_query}.
 Your answer must be either: NA, Positive or Negative 
@@ -39,7 +38,7 @@ When in doubt about whether the post is related to {search_query}, founder of {o
 Do not add anything else to your answer other than either: NA, Positive or Negative 
 Reddit Post: """
 
-exclude_subreddits = eval(os.environ["exclude_subreddits"])
+exclude_subreddits = eval(os.environ["EXCLUDE_SUBREDDITS"])
 # Search and filter recent posts
 time_threshold = datetime.now(timezone.utc) - timedelta(hours=1)
 reddit_search_query = f'"{search_query}" OR "{org_query}"'  # OR search
