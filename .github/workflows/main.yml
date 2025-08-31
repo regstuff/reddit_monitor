@@ -1,0 +1,32 @@
+name: Hourly Reddit Check
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # 10:00 IST is 04:30 UTC
+  workflow_dispatch:        # allows manual triggering too
+
+jobs:
+  run-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run reddit monitor script
+        env:
+          search_query: ${{ secrets.search_query }}
+          ORG_QUERY: ${{ secrets.ORG_QUERY }}
+          REDDIT_CLIENTID: ${{ secrets.REDDIT_CLIENTID }}
+          AZURE_URL: ${{ secrets.AZURE_URL }}
+          AZURE_KEY: ${{ secrets.AZURE_KEY }}
+          REDDIT_CLIENTSECRET: ${{ secrets.REDDIT_CLIENTSECRET }}
+          exclude_subreddits: ${{ secrets.exclude_subreddits }}
+        run: python main.py
