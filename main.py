@@ -19,7 +19,7 @@ def azure_call(data):
 # Gsheet API
 sheet = None
 GSHEETS_API_KEY = os.environ["GSHEETS_API_KEY"]
-SHEET_ID = os.environ("SHEET_ID")
+SHEET_ID = os.environ["SHEET_ID"]
 
 if GSHEETS_API_KEY and SHEET_ID:
     if 1 == 1:
