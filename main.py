@@ -69,6 +69,8 @@ for submission in reddit.subreddit("all").search(search_query, sort="new", time_
     created_time = datetime.fromtimestamp(submission.created_utc, tz=timezone.utc)
     if created_time > time_threshold and submission.subreddit.display_name.lower() not in exclude_subreddits:
         num_submissions += 1
+        print(f"[{created_time}] r/{submission.subreddit}: {submission.title}")
+        print(submission.url, "\n")
         if submission.selftext.strip() != "":
             data = {
                     "messages": [{"role":"user","content": title_check_prompt + submission.title + '\n' + submission.selftext.strip()}],
@@ -79,8 +81,6 @@ for submission in reddit.subreddit("all").search(search_query, sort="new", time_
                     "stop": None
                 }
             response = azure_call(data)
-            print(f"[{created_time}] r/{submission.subreddit}: {submission.title}")
-            print(submission.url, "\n")
             print(submission.selftext.strip())
             print('RESPONSE:', response)
             if response.lower().strip() in ['negative', 'positive']:
